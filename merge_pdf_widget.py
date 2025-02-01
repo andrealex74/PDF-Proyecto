@@ -40,6 +40,7 @@ class MergePDFWidget(QWidget):
         # Botón para unir los PDFs
         self.merge_btn = QPushButton("Unir PDFs")
         self.merge_btn.clicked.connect(self.merge_pdfs)
+        self.merge_btn.setObjectName("primaryButton")
         layout.addWidget(self.merge_btn)
 
         self.setLayout(layout)

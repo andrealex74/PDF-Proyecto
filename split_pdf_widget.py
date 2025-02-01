@@ -78,8 +78,9 @@ class SplitPDFWidget(QWidget):
         layout.addWidget(self.new_dirs_folder_label)
 
         # Botón para dividir el PDF
-        self.split_btn = QPushButton("DIVIDIR Y CREAR")
+        self.split_btn = QPushButton("Dividir y Crear")
         self.split_btn.clicked.connect(self.split_pdf)
+        self.split_btn.setObjectName("primaryButton")
         layout.addWidget(self.split_btn)
 
         self.setLayout(layout)
