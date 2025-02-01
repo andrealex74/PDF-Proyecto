@@ -20,11 +20,11 @@ class SplitPDFWidget(QWidget):
         layout = QVBoxLayout()
 
         # Botón para seleccionar el PDF a dividir
-        self.select_pdf_btn = QPushButton("Seleccionar PDF a dividir")
+        self.select_pdf_btn = QPushButton("Selecciona el PDF a dividir")
         self.select_pdf_btn.clicked.connect(self.select_pdf)
         layout.addWidget(self.select_pdf_btn)
 
-        self.pdf_label = QLabel("No se ha seleccionado ningún PDF.")
+        self.pdf_label = QLabel("No se ha seleccionado ningún PDF")
         layout.addWidget(self.pdf_label)
 
         # Selección de fecha mediante QDateEdit
@@ -35,11 +35,11 @@ class SplitPDFWidget(QWidget):
         layout.addWidget(self.date_edit)
 
         # Botón para seleccionar el archivo Excel de nombres (incluye *.xlsm*)
-        self.select_excel_btn = QPushButton("Seleccionar archivo Excel de nombres")
+        self.select_excel_btn = QPushButton("Selecciona el archivo Excel")
         self.select_excel_btn.clicked.connect(self.select_excel)
         layout.addWidget(self.select_excel_btn)
 
-        self.excel_label = QLabel("No se ha seleccionado ningún archivo Excel.")
+        self.excel_label = QLabel("No se ha seleccionado ningún archivo Excel")
         layout.addWidget(self.excel_label)
 
         # Parámetros para extraer nombres del Excel: hoja, columna y fila de inicio
@@ -58,27 +58,27 @@ class SplitPDFWidget(QWidget):
         layout.addLayout(excel_params_layout)
 
         # Mostrar cantidad de nombres extraídos
-        self.names_count_label = QLabel("Nombres extraídos: 0")
+        self.names_count_label = QLabel("Número de nombres extraídos: 0")
         layout.addWidget(self.names_count_label)
 
         # Seleccionar carpeta para guardar los PDFs divididos (Carpeta A)
-        self.select_pdf_save_folder_btn = QPushButton("Seleccionar carpeta para guardar PDFs")
+        self.select_pdf_save_folder_btn = QPushButton("Selecciona la carpeta de destino")
         self.select_pdf_save_folder_btn.clicked.connect(self.select_pdf_save_folder)
         layout.addWidget(self.select_pdf_save_folder_btn)
 
-        self.pdf_save_folder_label = QLabel("No se ha seleccionado ninguna carpeta para guardar PDFs.")
+        self.pdf_save_folder_label = QLabel("No se ha seleccionado la carpeta de destino")
         layout.addWidget(self.pdf_save_folder_label)
 
         # Seleccionar carpeta para crear las carpetas nuevas (Carpeta B)
-        self.select_new_dirs_folder_btn = QPushButton("Seleccionar carpeta para crear carpetas nuevas")
+        self.select_new_dirs_folder_btn = QPushButton("Carpeta de destino para crear subcarpetas")
         self.select_new_dirs_folder_btn.clicked.connect(self.select_new_dirs_folder)
         layout.addWidget(self.select_new_dirs_folder_btn)
 
-        self.new_dirs_folder_label = QLabel("No se ha seleccionado ninguna carpeta para crear carpetas nuevas.")
+        self.new_dirs_folder_label = QLabel("No se ha seleccionado ninguna carpeta")
         layout.addWidget(self.new_dirs_folder_label)
 
         # Botón para dividir el PDF
-        self.split_btn = QPushButton("Dividir PDF")
+        self.split_btn = QPushButton("DIVIDIR Y CREAR")
         self.split_btn.clicked.connect(self.split_pdf)
         layout.addWidget(self.split_btn)
 
@@ -146,7 +146,7 @@ class SplitPDFWidget(QWidget):
             # Procesar los nombres: si se repiten, se les agrega un índice solo a los duplicados
             names = self.process_duplicate_names(names)
             self.names_list = names
-            self.names_count_label.setText(f"Nombres extraídos: {len(names)}")
+            self.names_count_label.setText(f"Número de nombres extraídos: {len(names)}")
         except Exception as e:
             QMessageBox.critical(self, "Error al leer Excel", f"No se pudieron extraer los nombres:\n{str(e)}")
 
@@ -164,10 +164,6 @@ class SplitPDFWidget(QWidget):
         """
         Procesa una lista de nombres y agrega un índice secuencial solo a aquellos que se repiten.
         Si un nombre aparece una única vez, se conserva sin modificar.
-        Por ejemplo, para la lista:
-            ["ANDRE NARANJO CHACON", "ANDRE NARANJO CHACON", "MARIA PEREZ"]
-        se convierte en:
-            ["ANDRE NARANJO CHACON 1", "ANDRE NARANJO CHACON 2", "MARIA PEREZ"]
         """
         frequency = {}
         for name in names:
@@ -226,7 +222,7 @@ class SplitPDFWidget(QWidget):
 
             QMessageBox.information(
                 self, "Éxito",
-                f"El PDF se ha dividido en {num_pages} archivos guardados en '{self.pdf_save_folder}' y se han creado las carpetas correspondientes en '{self.new_dirs_folder}'."
+                f"El PDF se ha dividido en {num_pages} archivos."
             )
         except Exception as e:
             QMessageBox.critical(self, "Error", f"Error al dividir el PDF:\n{str(e)}")

@@ -8,7 +8,7 @@ class MainWindow(QWidget):
         self.init_ui()
 
     def init_ui(self):
-        self.setWindowTitle("Aplicación de PDFs")
+        self.setWindowTitle("Easy PDF")
         self.resize(500, 400)
         layout = QVBoxLayout()
         tabs = QTabWidget()
@@ -19,7 +19,7 @@ class MainWindow(QWidget):
 
         # Agregar pestaña para Unir PDFs con PDF fijo
         self.merge_tab = MergePDFWidget()
-        tabs.addTab(self.merge_tab, "Unir PDFs con PDF fijo")
+        tabs.addTab(self.merge_tab, "Unir PDFs con un PDF fijo")
 
         layout.addWidget(tabs)
         self.setLayout(layout)
