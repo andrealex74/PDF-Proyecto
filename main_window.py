@@ -133,7 +133,7 @@ class MainWindow(QMainWindow):
         title_bar.setObjectName("titleBar")
         title_bar.setMouseTracking(True)
 
-        title_label = QLabel("GESTOR DE PDFs")
+        title_label = QLabel("PODIF")
         title_layout.addWidget(title_label)
         title_layout.addStretch()
 
