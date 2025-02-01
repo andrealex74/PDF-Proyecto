@@ -1,0 +1,25 @@
+# Ignorar entorno virtual
+nuevo_env/
+
+# Ignorar carpetas generadas por PyInstaller
+build/
+dist/
+
+# Ignorar archivos de configuración de PyInstaller
+*.spec
+
+# Ignorar archivos de Python
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+*.db
+*.sqlite3
+
+# Ignorar archivos generados por el sistema
+.DS_Store
+Thumbs.db
+
+# Ignorar archivos de configuración local
+*.local
+*.env
