@@ -34,17 +34,6 @@ class SplitPDFWidget(QWidget):
         self.date_edit.setCalendarPopup(True)
         layout.addWidget(self.date_edit)
 
-<<<<<<< HEAD
-=======
-        # Botón para seleccionar el archivo Excel de nombres (incluye *.xlsm*)
-        self.select_excel_btn = QPushButton("Selecciona el archivo Excel")
-        self.select_excel_btn.clicked.connect(self.select_excel)
-        layout.addWidget(self.select_excel_btn)
-
-        self.excel_label = QLabel("No se ha seleccionado ningún archivo Excel")
-        layout.addWidget(self.excel_label)
-
->>>>>>> 056375e8d43e107ba2b597490dcc457a89bd3031
         # Parámetros para extraer nombres del Excel: hoja, columna y fila de inicio
         excel_params_layout = QHBoxLayout()
         self.sheet_lineedit = QLineEdit()
