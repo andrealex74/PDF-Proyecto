@@ -50,6 +50,17 @@ class MainWindow(QMainWindow):
                 color: #e0e0e0;
                 border-radius: 15px;
             }
+            QLineEdit {
+                background-color: #2d2d2d;  /* Fondo más oscuro para mayor contraste */
+                color: #d0d0d0;  /* Color de texto gris claro */
+                border: 2px solid #555555;  /* Borde sutil */
+                padding: 5px;
+                border-radius: 4px;
+                font-size: 14px;
+            }
+            QLineEdit:focus {
+                border: 2px solid #3949ab;  /* Borde azul cuando el campo está enfocado */
+            }
             QPushButton {
                 background-color: #3949ab;
                 color: white;

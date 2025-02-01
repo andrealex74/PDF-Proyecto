@@ -5,6 +5,8 @@ from PyQt5.QtWidgets import (
     QWidget, QVBoxLayout, QHBoxLayout, QPushButton, QFileDialog,
     QLabel, QMessageBox, QDateEdit, QLineEdit
 )
+from PyQt5.QtCore import QDate
+
 
 class SplitPDFWidget(QWidget):
     def __init__(self):
@@ -32,12 +34,13 @@ class SplitPDFWidget(QWidget):
         self.date_edit = QDateEdit()
         self.date_edit.setDisplayFormat("dd-MM-yyyy")
         self.date_edit.setCalendarPopup(True)
+        self.date_edit.setDate(QDate.currentDate())
         layout.addWidget(self.date_edit)
 
         # Parámetros para extraer nombres del Excel: hoja, columna y fila de inicio
         excel_params_layout = QHBoxLayout()
         self.sheet_lineedit = QLineEdit()
-        self.sheet_lineedit.setPlaceholderText("Nombre de Hoja (ej. Hoja1)")
+        self.sheet_lineedit.setPlaceholderText("Hoja (ej. Hoja1)")
         excel_params_layout.addWidget(self.sheet_lineedit)
 
         self.column_lineedit = QLineEdit()
