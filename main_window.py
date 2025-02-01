@@ -15,7 +15,7 @@ class MainWindow(QMainWindow):
 
     def init_ui(self):
         self.setWindowFlags(Qt.FramelessWindowHint | Qt.WindowSystemMenuHint)
-        self.setWindowTitle("Gestor de PDFs")
+        self.setWindowTitle("PODIF")
         self.setFixedSize(400, 700)  # Fija el tamaño de la ventana
 
         # Aplicar estilos
