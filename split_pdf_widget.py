@@ -29,6 +29,14 @@ class SplitPDFWidget(QWidget):
         self.pdf_label = QLabel("No se ha seleccionado ningún PDF")
         layout.addWidget(self.pdf_label)
 
+        # Añadir campo de entrada para el texto personalizado
+        self.custom_text_label = QLabel("Ingrese el texto personalizado:")
+        layout.addWidget(self.custom_text_label)
+
+        self.custom_text_edit = QLineEdit("")
+        self.custom_text_edit.setPlaceholderText("Ingrese su texto aquí")
+        layout.addWidget(self.custom_text_edit)
+
         # Selección de fecha mediante QDateEdit
         layout.addWidget(QLabel("Selecciona la fecha:"))
         self.date_edit = QDateEdit()
@@ -47,7 +55,7 @@ class SplitPDFWidget(QWidget):
         self.column_lineedit.setPlaceholderText("Columna (ej. G)")
         excel_params_layout.addWidget(self.column_lineedit)
 
-        self.row_lineedit = QLineEdit()
+        self.row_lineedit = QLineEdit("")
         self.row_lineedit.setPlaceholderText("Fila inicio (ej. 1)")
         excel_params_layout.addWidget(self.row_lineedit)
         layout.addLayout(excel_params_layout)
@@ -206,15 +214,18 @@ class SplitPDFWidget(QWidget):
                     f"El número de páginas del PDF ({num_pages}) no coincide con el número de nombres extraídos ({len(self.names_list)})."
                 )
                 return
-
+            
+            custom_text = self.custom_text_edit.text().strip()  # Obtener el texto personalizado del usuario y quitar espacios
             date_str = self.date_edit.date().toString("dd-MM-yyyy")
 
             for i in range(num_pages):
                 pdf_writer = PyPDF2.PdfWriter()
                 pdf_writer.add_page(pdf_reader.pages[i])
-                # Nombre del PDF: <fecha> RPV <nombre extraído>.pdf
-                new_filename = f"{date_str} RPV {self.names_list[i]}.pdf"
-                # Guardar el PDF en la carpeta seleccionada para PDFs
+                # Componer el nombre del archivo según si se proporcionó texto personalizado
+                if custom_text:
+                    new_filename = f"{date_str} {custom_text} {self.names_list[i]}.pdf"
+                else:
+                    new_filename = f"{date_str} {self.names_list[i]}.pdf"
                 output_pdf_path = os.path.join(self.pdf_save_folder, new_filename)
                 with open(output_pdf_path, "wb") as out_file:
                     pdf_writer.write(out_file)
@@ -223,6 +234,7 @@ class SplitPDFWidget(QWidget):
                 new_folder_path = os.path.join(self.new_dirs_folder, self.names_list[i])
                 if not os.path.exists(new_folder_path):
                     os.makedirs(new_folder_path)
+
 
             QMessageBox.information(
                 self, "Éxito",
